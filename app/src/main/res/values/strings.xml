@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Antons Skafferi Application</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="main_activity_button">Login</string>
+    <string name="activity2_name">Second Activity</string>
+    <string name="main_activity_textview">Enter message</string>
+    <string name="UsernameTextView">Username:</string>
+    <string name="PasswordTextView">Password:</string>
+    <string name="autoFillHints">Enter here</string>
+</resources>
