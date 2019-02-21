@@ -6,4 +6,162 @@
     android:layout_height="match_parent"
     tools:context=".ChooseTable">
 
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Välj bord"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
+
+    <TableLayout
+        android:id="@+id/tableLayout2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/tableButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:onClick="sendTableNumber"
+                android:paddingLeft="70dp"
+                android:paddingTop="20dp"
+                android:paddingRight="70dp"
+                android:paddingBottom="20dp"
+                android:text="1"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/tableButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:onClick="sendTableNumber"
+                android:paddingLeft="70dp"
+                android:paddingTop="20dp"
+                android:paddingRight="70dp"
+                android:paddingBottom="20dp"
+                android:text="2"
+                android:textSize="30sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/tableButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:onClick="sendTableNumber"
+                android:paddingLeft="70dp"
+                android:paddingTop="20dp"
+                android:paddingRight="70dp"
+                android:paddingBottom="20dp"
+                android:text="3"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/tableButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:onClick="sendTableNumber"
+                android:paddingLeft="70dp"
+                android:paddingTop="20dp"
+                android:paddingRight="70dp"
+                android:paddingBottom="20dp"
+                android:text="4"
+                android:textSize="30sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/tableButton5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:onClick="sendTableNumber"
+                android:paddingLeft="70dp"
+                android:paddingTop="20dp"
+                android:paddingRight="70dp"
+                android:paddingBottom="20dp"
+                android:text="5"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/tableButton6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:onClick="sendTableNumber"
+                android:paddingLeft="70dp"
+                android:paddingTop="20dp"
+                android:paddingRight="70dp"
+                android:paddingBottom="20dp"
+                android:text="6"
+                android:textSize="30sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <Button
+                android:id="@+id/tableButton7"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:onClick="sendTableNumber"
+                android:paddingLeft="70dp"
+                android:paddingTop="20dp"
+                android:paddingRight="70dp"
+                android:paddingBottom="20dp"
+                android:text="7"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/tableButton8"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:onClick="sendTableNumber"
+                android:paddingLeft="70dp"
+                android:paddingTop="20dp"
+                android:paddingRight="70dp"
+                android:paddingBottom="20dp"
+                android:text="8"
+                android:textSize="30sp" />
+        </TableRow>
+    </TableLayout>
+
 </android.support.constraint.ConstraintLayout>
