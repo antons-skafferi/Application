@@ -24,5 +24,8 @@ public class MainActivity extends AppCompatActivity {
         };
 
         button.setOnClickListener(click);
+
+
+        startActivity(new Intent(this, CreateOrder.class));
     }
 }
