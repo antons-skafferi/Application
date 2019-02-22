@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener click = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), SecondActivity.class);
+                Intent intent = new Intent(v.getContext(), ChooseTable.class);
                 startActivity(intent);
             }
         };
@@ -26,6 +26,5 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(click);
 
 
-        startActivity(new Intent(this, CreateOrder.class));
     }
 }
