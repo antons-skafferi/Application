@@ -56,26 +56,6 @@ public class DatabaseRequest extends AsyncTask<String, Void, Document> {
     }
 
 
-    /*private void clean(Node node){
-        NodeList childNodes = node.getChildNodes();
-        for(int i = 0; i<childNodes.getLength(); i++){
-            Node child = childNodes.item(i);
-            short nodeType = child.getNodeType();
-
-            if(nodeType == Node.ELEMENT_NODE){
-                clean(child);
-            }else if(nodeType == Node.TEXT_NODE){
-                String trimmedNodeVal = child.getNodeValue().trim();
-                if(trimmedNodeVal.length() == 0){
-                    node.removeChild(child);
-                }else{
-                    child.setNodeValue(trimmedNodeVal);
-                }
-            }else if(nodeType == Node.COMMENT_NODE){
-                node.removeChild(child);
-            }
-        }
-    }*/
 
     @Override
     protected void onPostExecute(Document xmlDoc){
