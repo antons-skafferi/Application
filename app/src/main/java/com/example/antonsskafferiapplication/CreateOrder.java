@@ -59,7 +59,7 @@ public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
                 orderDetails.add(new OrderObj(orders.get(i).getFoodName(), orders.get(i).getFoodQuantity()));
             }
         }
-
+        
         //Gets table number from intent with getExtra()
         Intent intent = getIntent();
         String tableNumber = intent.getStringExtra(ChooseTable.EXTRA_MESSAGE_TABLE_NUMBER);
@@ -83,7 +83,7 @@ public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
 
 
         //Parse drinks
-        ArrayList<String> drinks = parseItem("drink", "drinkId", d);
+        ArrayList<String> drinks = parseItem("drink", "drinkName", d);
         for(int i=0; i<drinks.size(); i++){
             LunchOrderCard drinkCard = new LunchOrderCard(this, drinks.get(i));
             orders.add(drinkCard);
@@ -94,7 +94,8 @@ public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
 
     private ArrayList<String> parseItem(String parentElementId, String targetElemName, Document d){
         NodeList elements = d.getElementsByTagName(parentElementId);
-        ArrayList<String> results = new ArrayList<String>();
+        ArrayList<String> results = new ArrayList<>();
+
         for(int i=0; i<elements.getLength(); i++){
             Node elem = elements.item(i);
             NodeList lunchData = elem.getChildNodes();

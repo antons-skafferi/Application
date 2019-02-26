@@ -31,15 +31,15 @@ public class DatabaseRequest extends AsyncTask<String, Void, Document> {
         for(String s : strings){
             try {
                 URL url = new URL(s);
-                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-                 conn.setRequestMethod("GET");
-                 conn.setRequestProperty("Accept", "application/xml");
+                HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("Accept", "application/xml");
 
-                 DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-                 DocumentBuilder builder = factory.newDocumentBuilder();
+                DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+                DocumentBuilder builder = factory.newDocumentBuilder();
 
-                 Document xmlResponse = builder.parse(conn.getInputStream());
-                 return xmlResponse;
+                Document xmlResponse = builder.parse(conn.getInputStream());
+                return xmlResponse;
 
             } catch (MalformedURLException e) {
                 e.printStackTrace();
