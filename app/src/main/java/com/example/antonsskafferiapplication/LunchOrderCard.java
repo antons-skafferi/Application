@@ -75,4 +75,14 @@ class LunchOrderCard extends LinearLayout {
         });
 
     }
+
+
+    public String getFoodName(){
+        return foodName.getText().toString();
+    }
+
+    public int getFoodQuantity(){
+        return quantity;
+    }
+
 }
