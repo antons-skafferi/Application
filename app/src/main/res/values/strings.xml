@@ -12,4 +12,5 @@
     <string name="a_la_carte">A la carte</string>
     <string name="food_name">Food name</string>
     <string name="button">Button</string>
+    <string name="title_activity_kitchen">KitchenActivity</string>
 </resources>
