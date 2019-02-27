@@ -43,7 +43,7 @@ public class Overview extends AppCompatActivity {
 
 
         layoutFoodName = findViewById(R.id.foodListContainer);
-        layoutFoodQuantity = findViewById(R.id.antalOverviewLayout);
+        layoutFoodQuantity = findViewById(R.id.numberOverviewLayout);
 
         Intent in = getIntent();
         ArrayList<OrderObj> orderObjectArray = in.getParcelableArrayListExtra("orderObjectArray");
