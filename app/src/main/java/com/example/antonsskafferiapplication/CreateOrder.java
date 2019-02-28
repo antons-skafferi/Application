@@ -46,6 +46,9 @@ public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
         });
 
         //since using 127.0.0.1 only uses the internal localhost in the phone we need to use 10.0.2.2 which redirects us to the computer's localhost
+        new DatabaseRequest(this).execute("http://10.0.2.2:33819/website/webresources/api.lunch");
+        new DatabaseRequest(this).execute("http://10.0.2.2:33819/website/webresources/api.drink");
+        //If server has port 8080 instead 
         new DatabaseRequest(this).execute("http://10.0.2.2:8080/website/webresources/api.lunch");
         new DatabaseRequest(this).execute("http://10.0.2.2:8080/website/webresources/api.drink");
     }
