@@ -26,6 +26,7 @@ public class DatabaseRequest extends AsyncTask<String, Void, Document> {
         callBack = (DocumentCallBack)callBackClass;
     }
 
+
     @Override
     protected Document doInBackground(String... strings) {
         for(String s : strings){
