@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Overview" />
+        <activity android:name=".KitchenActivity" />
         <activity android:name=".CreateOrder" />
         <activity android:name=".ChooseTable" />
         <activity

@@ -15,10 +15,12 @@ public class KitchenActivity extends AppCompatActivity {
 
         orderCardLayout = findViewById(R.id.orderCardLayout);
 
-        KitchenOrderCard orderCard = new KitchenOrderCard(this);
-        orderCardLayout.addView(orderCard);
-        orderCardLayout.addView(orderCard);
-        orderCardLayout.addView(orderCard);
+        //TODO get orders from database
+        for(int i = 0; i < 5; i++){
+            KitchenOrderCard orderCard = new KitchenOrderCard(this);
+            orderCardLayout.setPadding(20,20,20,20);
+            orderCardLayout.addView(orderCard);
+        }
 
 
     }
