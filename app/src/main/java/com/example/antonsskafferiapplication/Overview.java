@@ -42,6 +42,7 @@ public class Overview extends AppCompatActivity {
     private LinearLayout layoutFoodQuantity;
     private ArrayList<Pair<String, String>> orderDetails = new ArrayList<>();
     private TextView tableNumberView;
+    private Button goBackButton;
 
 
     @Override
@@ -49,7 +50,7 @@ public class Overview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overview);
 
-
+        goBackButton = findViewById(R.id.goBack);
         tableNumberView = findViewById(R.id.tableNumberOverview);
         layoutFoodName = findViewById(R.id.foodListContainer);
         layoutFoodQuantity = findViewById(R.id.numberOverviewLayout);
@@ -80,7 +81,12 @@ public class Overview extends AppCompatActivity {
             }
         });
 
-
+        goBackButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Overview.this.finish();
+            }
+        });
 
     }
 
@@ -158,7 +164,7 @@ public class Overview extends AppCompatActivity {
 
         private int sendJSON(String JSONData){
             try {
-                URL url = new URL("http://10.0.2.2:8080/website/webresources/api.order1");
+                URL url = new URL("http://10.0.2.2:33819/website/webresources/api.order1");
                 HttpURLConnection client = (HttpURLConnection) url.openConnection();
                 client.setRequestMethod("POST");
 
