@@ -4,6 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class OrderObj implements Parcelable {
+    /*Create an object to contain food name and quantity.
+    This object is sent between activities and thus needs to implement Parcelable
+    */
     private String foodName;
     private int quantity;
 

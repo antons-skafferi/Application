@@ -26,6 +26,10 @@ public class DatabaseRequest extends AsyncTask<String, Void, Document> {
         callBack = (DocumentCallBack)callBackClass;
     }
 
+    public DatabaseRequest(KitchenActivity callBackClass){
+        callBack = (DocumentCallBack)callBackClass;
+    }
+
 
     @Override
     protected Document doInBackground(String... strings) {
@@ -61,8 +65,6 @@ public class DatabaseRequest extends AsyncTask<String, Void, Document> {
     @Override
     protected void onPostExecute(Document xmlDoc){
         if(xmlDoc != null){
-            //xmlDoc.getDocumentElement().normalize();
-            //clean(xmlDoc);
             callBack.callBackDocument(xmlDoc);
         }
     }

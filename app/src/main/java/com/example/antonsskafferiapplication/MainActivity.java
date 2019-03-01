@@ -26,5 +26,15 @@ public class MainActivity extends AppCompatActivity {
         button.setOnClickListener(click);
 
 
+
+        Button buttonTestKitchenApp = findViewById(R.id.buttonTestKitchenApp);
+        buttonTestKitchenApp.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(v.getContext(), KitchenActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

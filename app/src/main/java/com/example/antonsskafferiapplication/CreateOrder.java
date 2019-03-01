@@ -34,10 +34,10 @@ public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_order);
 
+        //Find views for elements
         lunchLayout = findViewById(R.id.layoutLunchItems);
         drinksLayout = findViewById(R.id.layoutDrinks);
         aLaCarteLayout = findViewById(R.id.layoutALaCarte);
-
         floatButtonDone = findViewById(R.id.floatingButtonDone);
         loadingElementLunch = findViewById(R.id.progressBarLunch);
         loadingElementDrinks = findViewById(R.id.progressBarDrinks);
@@ -50,11 +50,12 @@ public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
             }
         });
 
+
+        //When this activity start get data from database
         //since using 127.0.0.1 only uses the internal localhost in the phone we need to use 10.0.2.2 which redirects us to the computer's localhost
-        new DatabaseRequest(this).execute("http://10.0.2.2:33819/website/webresources/api.lunch");
-        new DatabaseRequest(this).execute("http://10.0.2.2:33819/website/webresources/api.drink");
-        //If server has port 8080 instead 
+        //Request lunches
         new DatabaseRequest(this).execute("http://10.0.2.2:8080/website/webresources/api.lunch");
+        //Request drinks
         new DatabaseRequest(this).execute("http://10.0.2.2:8080/website/webresources/api.drink");
     }
 
@@ -73,6 +74,7 @@ public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
         String tableNumber = intent.getStringExtra(ChooseTable.EXTRA_MESSAGE_TABLE_NUMBER);
 
 
+        //Intent starts a new activity
         Intent i = new Intent(this, Overview.class);
         i.putParcelableArrayListExtra("orderObjectArray", orderDetails);//Get array with i.getParcelableArrayListExtra("orderObjectArray")
         i.putExtra("tableNumber", tableNumber);
@@ -89,6 +91,7 @@ public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
             lunchLayout.addView(lunchCard);
         }
         if(lunches.size() > 0){
+            //If there are no elements set visibility to gone
             loadingElementLunch.setVisibility(View.GONE);
         }
 
@@ -101,12 +104,14 @@ public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
             drinksLayout.addView(drinkCard);
         }
         if(drinks.size() > 0){
+            //If there are no elements set visibility to gone
             loadingElementDrinks.setVisibility(View.GONE);
         }
 
     }
 
     private ArrayList<String> parseItem(String parentElementId, String targetElemName, Document d){
+        //Finds all tags of parentElementId and gets all child elements of id targetElemName
         NodeList elements = d.getElementsByTagName(parentElementId);
         ArrayList<String> results = new ArrayList<>();
 
