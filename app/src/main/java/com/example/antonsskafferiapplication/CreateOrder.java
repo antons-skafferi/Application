@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import org.w3c.dom.Document;
@@ -25,6 +26,8 @@ public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
     private LinearLayout lunchLayout;
     private LinearLayout drinksLayout;
     private LinearLayout aLaCarteLayout;
+    private ProgressBar loadingElementLunch;
+    private ProgressBar loadingElementDrinks;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,8 @@ public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
         aLaCarteLayout = findViewById(R.id.layoutALaCarte);
 
         floatButtonDone = findViewById(R.id.floatingButtonDone);
+        loadingElementLunch = findViewById(R.id.progressBarLunch);
+        loadingElementDrinks = findViewById(R.id.progressBarDrinks);
 
 
         floatButtonDone.setOnClickListener(new View.OnClickListener(){
@@ -46,6 +51,9 @@ public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
         });
 
         //since using 127.0.0.1 only uses the internal localhost in the phone we need to use 10.0.2.2 which redirects us to the computer's localhost
+        new DatabaseRequest(this).execute("http://10.0.2.2:33819/website/webresources/api.lunch");
+        new DatabaseRequest(this).execute("http://10.0.2.2:33819/website/webresources/api.drink");
+        //If server has port 8080 instead 
         new DatabaseRequest(this).execute("http://10.0.2.2:8080/website/webresources/api.lunch");
         new DatabaseRequest(this).execute("http://10.0.2.2:8080/website/webresources/api.drink");
     }
@@ -80,6 +88,9 @@ public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
             orders.add(lunchCard);
             lunchLayout.addView(lunchCard);
         }
+        if(lunches.size() > 0){
+            loadingElementLunch.setVisibility(View.GONE);
+        }
 
 
         //Parse drinks
@@ -88,6 +99,9 @@ public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
             LunchOrderCard drinkCard = new LunchOrderCard(this, drinks.get(i));
             orders.add(drinkCard);
             drinksLayout.addView(drinkCard);
+        }
+        if(drinks.size() > 0){
+            loadingElementDrinks.setVisibility(View.GONE);
         }
 
     }
