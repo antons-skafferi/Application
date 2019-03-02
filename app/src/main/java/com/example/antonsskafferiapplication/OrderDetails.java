@@ -22,7 +22,7 @@ public class OrderDetails {
     }
 
     public String getDateTime(){
-        dateTime = dateTime.replace("+01:00", "Z[UTC]");
+        //dateTime = dateTime.replace("+01:00", "Z[UTC]");
         return dateTime;
     }
 

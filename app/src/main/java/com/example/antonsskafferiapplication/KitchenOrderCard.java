@@ -105,7 +105,7 @@ public class KitchenOrderCard extends CardView {
         protected Void doInBackground(Void... voids) {
             for(OrderDetails induvidualItemOrderData : itemList){
                 try {
-                    URL url = new URL("http://10.0.2.2:33819/website/webresources/api.order1/"+induvidualItemOrderData.getOrderId());
+                    URL url = new URL("http://10.0.2.2:8080/website/webresources/api.order1/"+induvidualItemOrderData.getOrderId());
                     HttpURLConnection client = (HttpURLConnection) url.openConnection();
                     client.setRequestMethod("PUT");
                     client.setRequestProperty("Content-Type", "application/json");
