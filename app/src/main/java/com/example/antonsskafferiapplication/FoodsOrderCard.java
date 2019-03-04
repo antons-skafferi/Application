@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-class LunchOrderCard extends LinearLayout {
+class FoodsOrderCard extends LinearLayout {
 
 
     private int quantity = 0;
@@ -20,10 +20,11 @@ class LunchOrderCard extends LinearLayout {
     private Button increase;
     private TextView quantityText;
     private Button decrease;
+    private boolean isLunch = false;
 
-    public LunchOrderCard(Context context, String lunchName) {
+    public FoodsOrderCard(Context context, String foodNameString, boolean isLunch) {
         super(context);
-
+        this.isLunch = isLunch;
         setBackgroundColor(Color.parseColor("#e8e8e8"));
 
         LinearLayout buttonContainer = new LinearLayout(context);
@@ -31,7 +32,7 @@ class LunchOrderCard extends LinearLayout {
         setPadding(8,8,8,16);
         foodName = new TextView(context);
         foodName.setTextSize(20);
-        foodName.setText(lunchName);
+        foodName.setText(foodNameString);
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
                 LayoutParams.MATCH_PARENT,
                 LayoutParams.WRAP_CONTENT,
@@ -83,6 +84,10 @@ class LunchOrderCard extends LinearLayout {
 
     public int getFoodQuantity(){
         return quantity;
+    }
+
+    public boolean getIsLunch(){
+        return isLunch;
     }
 
 }

@@ -77,16 +77,27 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/a_la_carte"
+                android:text="Mat"
                 android:textSize="36sp"
                 android:visibility="visible" />
 
             <LinearLayout
-                android:id="@+id/layoutALaCarte"
+                android:id="@+id/layoutFoods"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center|fill"
-                android:orientation="vertical"></LinearLayout>
+                android:orientation="vertical">
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBarFood"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="181dp"
+                tools:layout_editor_absoluteY="245dp" />
+
         </LinearLayout>
     </ScrollView>
 

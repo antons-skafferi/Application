@@ -9,10 +9,12 @@ public class OrderObj implements Parcelable {
     */
     private String foodName;
     private int quantity;
+    private boolean isLunch;
 
-    public OrderObj(String name, int q){
+    public OrderObj(String name, int q, boolean lunchStatus){
         foodName = name;
         quantity = q;
+        isLunch = lunchStatus;
     }
 
     protected OrderObj(Parcel in) {
@@ -50,4 +52,9 @@ public class OrderObj implements Parcelable {
         dest.writeString(foodName);
         dest.writeInt(quantity);
     }
+
+    public boolean getIsLunch(){
+        return isLunch;
+    }
+
 }

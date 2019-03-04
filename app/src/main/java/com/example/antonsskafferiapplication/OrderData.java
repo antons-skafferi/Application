@@ -18,7 +18,6 @@ public class OrderData {
 
     public void addOrder(String orderName, String amount, String dateTime, String orderId){
         OrderDetails orderDet = new OrderDetails(orderName, amount, dateTime, orderId);
-
         orders.add(orderDet);
     }
 

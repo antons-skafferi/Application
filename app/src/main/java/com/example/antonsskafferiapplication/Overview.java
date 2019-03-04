@@ -41,10 +41,11 @@ public class Overview extends AppCompatActivity {
     private String tableId;
     private LinearLayout layoutFoodName;
     private LinearLayout layoutFoodQuantity;
-    private ArrayList<Pair<String, String>> orderDetails = new ArrayList<>();
+    //private ArrayList<Pair<String, String>> orderDetails = new ArrayList<>();
     private TextView tableNumberView;
     private Button goBackButton;
     private Button sendPost;
+    ArrayList<OrderObj> orderObjectArray;
 
 
     @Override
@@ -58,9 +59,8 @@ public class Overview extends AppCompatActivity {
         layoutFoodQuantity = findViewById(R.id.numberOverviewLayout);
 
         Intent in = getIntent();
-        ArrayList<OrderObj> orderObjectArray = in.getParcelableArrayListExtra("orderObjectArray");
+        orderObjectArray = in.getParcelableArrayListExtra("orderObjectArray");
         for(int i=0; i<orderObjectArray.size(); i++){
-            System.out.println(orderObjectArray.get(i).getFoodName()+": "+Integer.toString(orderObjectArray.get(i).getQuantity()));
             TextView foodName = new TextView(this);
             foodName.setText(orderObjectArray.get(i).getFoodName());
             layoutFoodName.addView(foodName);
@@ -69,7 +69,7 @@ public class Overview extends AppCompatActivity {
             foodQuantity.setText(Integer.toString(orderObjectArray.get(i).getQuantity()));
             layoutFoodQuantity.addView(foodQuantity);
 
-            orderDetails.add(new Pair<String, String>(orderObjectArray.get(i).getFoodName(), Integer.toString(orderObjectArray.get(i).getQuantity())));
+            //orderDetails.add(new Pair<String, String>(orderObjectArray.get(i).getFoodName(), Integer.toString(orderObjectArray.get(i).getQuantity())));
         }
 
         tableId = in.getStringExtra("tableNumber");
@@ -122,7 +122,7 @@ public class Overview extends AppCompatActivity {
                 sendPost.setVisibility(View.INVISIBLE);
                 goBackButton.setVisibility(View.INVISIBLE);
                 findViewById(R.id.progressBarOverview).setVisibility(View.VISIBLE);
-                new PostData().execute(extractQueryString(orderDetails, input.getText().toString()));
+                new PostData().execute(extractQueryString(orderObjectArray, input.getText().toString()));
                 dialog.dismiss();
             }
         });
@@ -137,7 +137,7 @@ public class Overview extends AppCompatActivity {
     }
 
 
-    public ArrayList<String> extractQueryString(ArrayList<Pair<String, String>> orders, String note){
+    public ArrayList<String> extractQueryString(ArrayList<OrderObj> orders, String note){
         /*Example string
         *
         * {"active":1,"amount":5,"dateTime":"2019-02-26T10:28:50Z[UTC]","item":"Drink_2","note":"-kaloua2","prepared":1,"tableNumber":5}
@@ -148,14 +148,18 @@ public class Overview extends AppCompatActivity {
 
         ArrayList<String> queries = new ArrayList<>();
 
-        for(Pair<String, String> p : orders){
-            String JSONObject = "{\"active\":1,\"dateTime\":\""+currentTimeString+"\",\"prepared\":1";
+        for(OrderObj p : orders){
+            String activeStatus = "1";
+            if(p.getIsLunch()){
+                activeStatus = "2";//If it's a lunch then the dish is already prepared
+            }
+            String JSONObject = "{\"active\":"+activeStatus+",\"dateTime\":\""+currentTimeString+"\",\"prepared\":1";
             JSONObject += ",\"tableNumber\":"+tableId;
-            JSONObject += ",\"item\":\""+p.first+"\"";
-            JSONObject += ",\"amount\":"+p.second;
+            JSONObject += ",\"item\":\""+p.getFoodName()+"\"";
+            JSONObject += ",\"amount\":"+p.getQuantity();
             JSONObject += ",\"note\":\""+note+"\"";
             JSONObject += "}";
-            System.out.println(JSONObject);
+
             queries.add(JSONObject);
         }
 

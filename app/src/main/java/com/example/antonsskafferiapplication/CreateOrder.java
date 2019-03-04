@@ -4,30 +4,27 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
 
     FloatingActionButton floatButtonDone;
-    ArrayList<LunchOrderCard> orders = new ArrayList<LunchOrderCard>();
+    ArrayList<FoodsOrderCard> orders = new ArrayList<FoodsOrderCard>();
 
     private LinearLayout lunchLayout;
     private LinearLayout drinksLayout;
-    private LinearLayout aLaCarteLayout;
+    private LinearLayout foodsLayout;
     private ProgressBar loadingElementLunch;
     private ProgressBar loadingElementDrinks;
+    private ProgressBar loadingElementFoods;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +34,11 @@ public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
         //Find views for elements
         lunchLayout = findViewById(R.id.layoutLunchItems);
         drinksLayout = findViewById(R.id.layoutDrinks);
-        aLaCarteLayout = findViewById(R.id.layoutALaCarte);
+        foodsLayout = findViewById(R.id.layoutFoods);
         floatButtonDone = findViewById(R.id.floatingButtonDone);
         loadingElementLunch = findViewById(R.id.progressBarLunch);
         loadingElementDrinks = findViewById(R.id.progressBarDrinks);
+        loadingElementFoods = findViewById(R.id.progressBarFood);
 
 
         floatButtonDone.setOnClickListener(new View.OnClickListener(){
@@ -54,9 +52,11 @@ public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
         //When this activity start get data from database
         //since using 127.0.0.1 only uses the internal localhost in the phone we need to use 10.0.2.2 which redirects us to the computer's localhost
         //Request lunches
-        new DatabaseRequest(this).execute("http://10.0.2.2:8080/website/webresources/api.lunch");
+        new DatabaseRequest(this).execute("http://10.0.2.2:33819/website/webresources/api.lunch");
         //Request drinks
-        new DatabaseRequest(this).execute("http://10.0.2.2:8080/website/webresources/api.drink");
+        new DatabaseRequest(this).execute("http://10.0.2.2:33819/website/webresources/api.drink");
+        //Request other foods
+        new DatabaseRequest(this).execute("http://10.0.2.2:33819/website/webresources/entities.food");
     }
 
 
@@ -65,7 +65,7 @@ public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
         ArrayList<OrderObj> orderDetails = new ArrayList<OrderObj>();
         for(int i=0; i<orders.size(); i++){
             if(orders.get(i).getFoodQuantity() > 0){
-                orderDetails.add(new OrderObj(orders.get(i).getFoodName(), orders.get(i).getFoodQuantity()));
+                orderDetails.add(new OrderObj(orders.get(i).getFoodName(), orders.get(i).getFoodQuantity(), orders.get(i).getIsLunch()));
             }
         }
         
@@ -86,7 +86,7 @@ public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
         //Parse lunches
         ArrayList<String> lunches = parseItem("lunch", "lunchId", d);
         for(int i=0; i<lunches.size(); i++){
-            LunchOrderCard lunchCard = new LunchOrderCard(this, lunches.get(i));
+            FoodsOrderCard lunchCard = new FoodsOrderCard(this, lunches.get(i), true);
             orders.add(lunchCard);
             lunchLayout.addView(lunchCard);
         }
@@ -99,13 +99,26 @@ public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
         //Parse drinks
         ArrayList<String> drinks = parseItem("drink", "drinkName", d);
         for(int i=0; i<drinks.size(); i++){
-            LunchOrderCard drinkCard = new LunchOrderCard(this, drinks.get(i));
+            FoodsOrderCard drinkCard = new FoodsOrderCard(this, drinks.get(i), false);
             orders.add(drinkCard);
             drinksLayout.addView(drinkCard);
         }
         if(drinks.size() > 0){
             //If there are no elements set visibility to gone
             loadingElementDrinks.setVisibility(View.GONE);
+        }
+
+
+        //Parse foods
+        ArrayList<String> foods = parseItem("food", "dish", d);
+        for(int i=0; i<foods.size(); i++){
+            FoodsOrderCard foodCard = new FoodsOrderCard(this, foods.get(i), false);
+            orders.add(foodCard);
+            foodsLayout.addView(foodCard);
+        }
+        if(foods.size() > 0){
+            //If there are no elements set visibility to gone
+            loadingElementFoods.setVisibility(View.GONE);
         }
 
     }

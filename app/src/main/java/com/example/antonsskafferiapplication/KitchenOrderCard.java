@@ -39,10 +39,12 @@ public class KitchenOrderCard extends CardView {
     private TextView table;
     private Button orderIsComplete;
     private OrderData order;
+    private String onClickDoneNewOrderActiveVal;
 
     //TODO get orders from database
-    public KitchenOrderCard(Context context, String titleTable, OrderData orderObj) {
+    public KitchenOrderCard(Context context, String titleTable, OrderData orderObj, String completeButton, String onClickNewActiveValue) {
         super(context);
+        onClickDoneNewOrderActiveVal = onClickNewActiveValue;
         order = orderObj;
         LinearLayout layoutCard = new LinearLayout(context);
         layoutCard.setOrientation(LinearLayout.VERTICAL);
@@ -77,7 +79,7 @@ public class KitchenOrderCard extends CardView {
         layoutCard.addView(cardLayout);
 
         orderIsComplete = new Button(context);
-        orderIsComplete.setText("KLAR!");
+        orderIsComplete.setText(completeButton);
         orderIsComplete.setOnClickListener(new View.OnClickListener(){
 
             @Override
@@ -105,7 +107,7 @@ public class KitchenOrderCard extends CardView {
         protected Void doInBackground(Void... voids) {
             for(OrderDetails induvidualItemOrderData : itemList){
                 try {
-                    URL url = new URL("http://10.0.2.2:8080/website/webresources/api.order1/"+induvidualItemOrderData.getOrderId());
+                    URL url = new URL("http://10.0.2.2:33819/website/webresources/api.order1/"+induvidualItemOrderData.getOrderId());
                     HttpURLConnection client = (HttpURLConnection) url.openConnection();
                     client.setRequestMethod("PUT");
                     client.setRequestProperty("Content-Type", "application/json");
@@ -115,7 +117,7 @@ public class KitchenOrderCard extends CardView {
                     OutputStreamWriter out = new OutputStreamWriter(client.getOutputStream());
 
                     //Creates JSON object to insert with put to update order item's activity status
-                    String JSONObject = "{\"active\":0,\"dateTime\":\""+induvidualItemOrderData.getDateTime()+"\",\"prepared\":1";
+                    String JSONObject = "{\"active\":"+onClickDoneNewOrderActiveVal+",\"dateTime\":\""+induvidualItemOrderData.getDateTime()+"\",\"prepared\":1";
                     JSONObject += ",\"tableNumber\":"+order.getTableNumber();
                     JSONObject += ",\"item\":\""+induvidualItemOrderData.getOrderName()+"\"";
                     JSONObject += ",\"amount\":"+induvidualItemOrderData.getAmount();
