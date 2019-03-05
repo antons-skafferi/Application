@@ -43,6 +43,12 @@ public class KitchenOrderCard extends CardView {
 
     //TODO get orders from database
     public KitchenOrderCard(Context context, String titleTable, OrderData orderObj, String completeButton, String onClickNewActiveValue) {
+        /*
+        * onClickNewActiveValue
+        * 0 = completed and delivered
+        * 1 = done but not delivered
+        * 2 = done and ready for delivery
+        * */
         super(context);
         onClickDoneNewOrderActiveVal = onClickNewActiveValue;
         order = orderObj;
