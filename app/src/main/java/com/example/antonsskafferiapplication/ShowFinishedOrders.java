@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.LinearLayout;
 
+import org.json.JSONArray;
 import org.w3c.dom.Document;
 
 import java.util.HashMap;
@@ -40,8 +41,8 @@ public class ShowFinishedOrders extends AppCompatActivity implements DocumentCal
     }
 
     @Override
-    public void callBackDocument(Document d) {
-        createCard(orderExtracter.extractOrders(d, "2"));
+    public void callBackDocument(JSONArray jsonArr) {
+        createCard(orderExtracter.extractOrders(jsonArr, "2"));
     }
 
 }

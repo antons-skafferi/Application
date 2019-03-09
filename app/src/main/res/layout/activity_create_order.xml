@@ -6,100 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".CreateOrder">
 
-    <ScrollView
-        android:id="@+id/scrollView2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tabBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/linearLayoutMain"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@android:dimen/app_icon_size"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/textView4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/lunch"
-                android:textSize="36sp"
-                android:visibility="visible" />
-
-            <LinearLayout
-                android:id="@+id/layoutLunchItems"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical" />
-
-            <ProgressBar
-                android:id="@+id/progressBarLunch"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/drycker"
-                android:textSize="36sp"
-                android:visibility="visible" />
-
-            <LinearLayout
-                android:id="@+id/layoutDrinks"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
-
-            </LinearLayout>
-
-            <ProgressBar
-                android:id="@+id/progressBarDrinks"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/textView7"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Mat"
-                android:textSize="36sp"
-                android:visibility="visible" />
-
-            <LinearLayout
-                android:id="@+id/layoutFoods"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center|fill"
-                android:orientation="vertical">
-
-            </LinearLayout>
-
-            <ProgressBar
-                android:id="@+id/progressBarFood"
-                style="?android:attr/progressBarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="181dp"
-                tools:layout_editor_absoluteY="245dp" />
-
-        </LinearLayout>
-    </ScrollView>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPagerOrder"
+        android:layout_width="395dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabBar" />
 
     <LinearLayout
         android:layout_width="80dp"
@@ -109,6 +36,7 @@
         android:layout_marginBottom="8dp"
         android:gravity="center"
         android:orientation="vertical"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -127,5 +55,19 @@
             app:backgroundTint="@android:color/holo_green_light"
             app:srcCompat="@drawable/plus" />
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBarCreateOrder"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/viewPagerOrder"
+        app:layout_constraintEnd_toEndOf="@+id/tabBar"
+        app:layout_constraintStart_toStartOf="@+id/tabBar"
+        app:layout_constraintTop_toTopOf="@+id/tabBar" />
 
 </android.support.constraint.ConstraintLayout>

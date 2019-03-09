@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 
+import org.json.JSONArray;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -24,7 +25,7 @@ public class KitchenActivity extends AppCompatActivity implements DocumentCallBa
         setContentView(R.layout.activity_kitchen);
         orderCardLayout = findViewById(R.id.orderCardLayout);
         orderExtractor = new ExtractOrder();
-        new DatabaseRequest(this).execute("http://10.0.2.2:33819/website/webresources/api.order1");
+        new DatabaseRequest(this).execute("http://10.0.2.2:8080/website/webresources/api.order1");
     }
 
     public void createCard(HashMap<String, OrderData> orders){
@@ -42,7 +43,7 @@ public class KitchenActivity extends AppCompatActivity implements DocumentCallBa
     }
 
     @Override
-    public void callBackDocument(Document d) {
+    public void callBackDocument(JSONArray d) {
         //Create cards for each order
         createCard(orderExtractor.extractOrders(d, "1"));
     }
