@@ -24,7 +24,7 @@ public class KitchenActivity extends AppCompatActivity implements DocumentCallBa
         setContentView(R.layout.activity_kitchen);
         orderCardLayout = findViewById(R.id.orderCardLayout);
         orderExtractor = new ExtractOrder();
-        new DatabaseRequest(this).execute("http://10.0.2.2:33819/website/webresources/api.order1");
+        new DatabaseRequest(this).execute("http://10.0.2.2:8080/website/webresources/api.order1");
     }
 
     public void createCard(HashMap<String, OrderData> orders){

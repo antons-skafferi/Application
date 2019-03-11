@@ -52,11 +52,11 @@ public class CreateOrder extends AppCompatActivity implements DocumentCallBack{
         //When this activity start get data from database
         //since using 127.0.0.1 only uses the internal localhost in the phone we need to use 10.0.2.2 which redirects us to the computer's localhost
         //Request lunches
-        new DatabaseRequest(this).execute("http://10.0.2.2:33819/website/webresources/api.lunch");
+        new DatabaseRequest(this).execute("http://10.0.2.2:8080/website/webresources/api.lunch");
         //Request drinks
-        new DatabaseRequest(this).execute("http://10.0.2.2:33819/website/webresources/api.drink");
+        new DatabaseRequest(this).execute("http://10.0.2.2:8080/website/webresources/api.drink");
         //Request other foods
-        new DatabaseRequest(this).execute("http://10.0.2.2:33819/website/webresources/entities.food");
+        new DatabaseRequest(this).execute("http://10.0.2.2:8080/website/webresources/entities.food");
     }
 
 

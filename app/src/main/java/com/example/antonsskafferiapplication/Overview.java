@@ -173,7 +173,7 @@ public class Overview extends AppCompatActivity {
 
         private int sendJSON(String JSONData){
             try {
-                URL url = new URL("http://10.0.2.2:33819/website/webresources/api.order1");
+                URL url = new URL("http://10.0.2.2:8080/website/webresources/api.order1");
                 HttpURLConnection client = (HttpURLConnection) url.openConnection();
                 client.setRequestMethod("POST");
 

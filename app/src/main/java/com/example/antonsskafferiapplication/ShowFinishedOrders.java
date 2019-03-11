@@ -24,7 +24,7 @@ public class ShowFinishedOrders extends AppCompatActivity implements DocumentCal
         orderExtracter = new ExtractOrder();
         orderCardLayout = findViewById(R.id.finishedOrdersLayout);
 
-        new DatabaseRequest(this).execute("http://10.0.2.2:33819/website/webresources/api.order1");
+        new DatabaseRequest(this).execute("http://10.0.2.2:8080/website/webresources/api.order1");
     }
 
 
