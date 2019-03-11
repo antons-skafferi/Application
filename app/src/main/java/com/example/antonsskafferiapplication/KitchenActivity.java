@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.LinearLayout;
 
+import org.json.JSONArray;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -42,7 +43,7 @@ public class KitchenActivity extends AppCompatActivity implements DocumentCallBa
     }
 
     @Override
-    public void callBackDocument(Document d) {
+    public void callBackDocument(JSONArray d) {
         //Create cards for each order
         createCard(orderExtractor.extractOrders(d, "1"));
     }
