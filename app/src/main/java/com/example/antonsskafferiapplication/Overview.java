@@ -3,6 +3,7 @@ package com.example.antonsskafferiapplication;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
@@ -122,7 +123,8 @@ public class Overview extends AppCompatActivity {
                 sendPost.setVisibility(View.INVISIBLE);
                 goBackButton.setVisibility(View.INVISIBLE);
                 findViewById(R.id.progressBarOverview).setVisibility(View.VISIBLE);
-                new PostData().execute(extractQueryString(orderObjectArray, input.getText().toString()));
+                String encodedText = Uri.encode(input.getText().toString());
+                new PostData().execute(extractQueryString(orderObjectArray, encodedText));
                 dialog.dismiss();
             }
         });

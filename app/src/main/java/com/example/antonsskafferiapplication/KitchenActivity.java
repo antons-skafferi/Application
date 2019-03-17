@@ -15,7 +15,6 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class KitchenActivity extends AppCompatActivity implements DocumentCallBack {
-
     private LinearLayout orderCardLayout;
     private ExtractOrder orderExtractor;
 
@@ -38,7 +37,6 @@ public class KitchenActivity extends AppCompatActivity implements DocumentCallBa
             orderCardLayout.setPadding(20,20,20,20);
             orderCardLayout.addView(orderCard);
         }
-
 
     }
 

@@ -132,6 +132,7 @@ public class KitchenOrderCard extends CardView {
                     JSONObject += "}";
                     out.write(JSONObject);
 
+                    //System.out.println(JSONObject);
 
                     out.close();
 

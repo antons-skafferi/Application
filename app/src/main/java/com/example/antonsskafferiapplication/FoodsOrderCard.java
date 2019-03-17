@@ -20,6 +20,7 @@ class FoodsOrderCard extends LinearLayout {
     private int quantity = 0;
     private TextView foodName;
     private Button increase;
+
     private TextView quantityText;
     private Button decrease;
     private boolean isLunch = false;
@@ -64,6 +65,7 @@ class FoodsOrderCard extends LinearLayout {
 
         quantityText = new TextView(context);
         quantityText.setText("0");
+        quantityText.setTextSize(16);
         buttonContainer.addView(quantityText);
 
         /*decrease = new Button(context);
@@ -71,6 +73,7 @@ class FoodsOrderCard extends LinearLayout {
         buttonContainer.addView(decrease);*/
 
         orderSlider = new SeekBar(context);
+        orderSlider.setMax(5);
         orderSlider.setLayoutParams(sliderParams);
         buttonContainer.addView(orderSlider);
 
