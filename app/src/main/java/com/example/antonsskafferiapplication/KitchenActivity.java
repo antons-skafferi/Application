@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class KitchenActivity extends AppCompatActivity implements DocumentCallBack {
     private LinearLayout orderCardLayout;
@@ -25,6 +27,15 @@ public class KitchenActivity extends AppCompatActivity implements DocumentCallBa
         orderCardLayout = findViewById(R.id.orderCardLayout);
         orderExtractor = new ExtractOrder();
         new DatabaseRequest(this).execute("http://10.0.2.2:8080/website/webresources/api.order1");
+
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                new DatabaseRequest(KitchenActivity.this).execute("http://10.0.2.2:8080/website/webresources/api.order1");
+            }
+        }, 2000, 2000);
     }
 
     public void createCard(HashMap<String, OrderData> orders){
@@ -43,6 +54,7 @@ public class KitchenActivity extends AppCompatActivity implements DocumentCallBa
     @Override
     public void callBackDocument(JSONArray d) {
         //Create cards for each order
+        orderCardLayout.removeAllViews();
         createCard(orderExtractor.extractOrders(d, "1"));
     }
 

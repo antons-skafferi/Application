@@ -14,11 +14,11 @@ import java.util.ArrayList;
 
 public class MyPagerAdapter extends FragmentPagerAdapter{
 
-    private ArrayList<String> mainMenuItems;
-    private ArrayList<String> appetizerItems;
-    private ArrayList<String> dessertItems;
-    private ArrayList<String> childMenuItems;
-    private ArrayList<String> drinksMenuItems;
+    private ArrayList<FoodItemData> mainMenuItems;
+    private ArrayList<FoodItemData> appetizerItems;
+    private ArrayList<FoodItemData> dessertItems;
+    private ArrayList<FoodItemData> childMenuItems;
+    private ArrayList<FoodItemData> drinksMenuItems;
 
     private MainMenuCreator mainMenuCreator;
     private AppetizerFragment appetizerFragment;
@@ -47,10 +47,10 @@ public class MyPagerAdapter extends FragmentPagerAdapter{
     public Fragment getItem(int position){
         switch(position){
             case 0:
-                mainMenuCreator = MainMenuCreator.newInstance(appetizerItems);
+                mainMenuCreator = MainMenuCreator.newInstance(mainMenuItems);
                 return mainMenuCreator;
             case 1:
-                appetizerFragment = AppetizerFragment.newInstance(mainMenuItems);
+                appetizerFragment = AppetizerFragment.newInstance(appetizerItems);
                 return appetizerFragment;
             case 2:
                 dessertMenuFragment = DessertMenuFragment.newInstance(dessertItems);
@@ -93,13 +93,13 @@ public class MyPagerAdapter extends FragmentPagerAdapter{
             try {
                 JSONObject foodObj = jsonRootArr.getJSONObject(i);
                 if(foodObj.getString("category").equals("main_menu")){
-                    mainMenuItems.add(foodObj.getString("dish"));
+                    mainMenuItems.add(new FoodItemData(foodObj.getString("dish"), foodObj.getString("description")));
                 }else if(foodObj.getString("category").equals("appetizer_menu")){
-                    appetizerItems.add(foodObj.getString("dish"));
+                    appetizerItems.add(new FoodItemData(foodObj.getString("dish"), foodObj.getString("description")));
                 }else if(foodObj.getString("category").equals("dessert_menu")){
-                    dessertItems.add(foodObj.getString("dish"));
+                    dessertItems.add(new FoodItemData(foodObj.getString("dish"), foodObj.getString("description")));
                 }else if(foodObj.getString("category").equals("child_menu")){
-                    childMenuItems.add(foodObj.getString("dish"));
+                    childMenuItems.add(new FoodItemData(foodObj.getString("dish"), foodObj.getString("description")));
                 }
             } catch (JSONException e) {
                 //e.printStackTrace();
@@ -110,7 +110,7 @@ public class MyPagerAdapter extends FragmentPagerAdapter{
         for(int i=0; i<jsonRootArr.length(); i++){
             try {
                 JSONObject foodObj = jsonRootArr.getJSONObject(i);
-                drinksMenuItems.add(foodObj.getString("drinkName"));
+                drinksMenuItems.add(new FoodItemData(foodObj.getString("drinkName"), ""));
             } catch (JSONException e) {
                 //e.printStackTrace();
             }

@@ -26,18 +26,20 @@ class FoodsOrderCard extends LinearLayout {
     private boolean isLunch = false;
     private SeekBar orderSlider;
 
-    public FoodsOrderCard(Context context, String foodNameString, boolean isLunch) {
+    public FoodsOrderCard(Context context, String foodNameString, String foodDescription, boolean isLunch) {
         super(context);
         this.isLunch = isLunch;
         setBackgroundColor(Color.parseColor("#e8e8e8"));
 
         LinearLayout buttonContainer = new LinearLayout(context);
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
-                LayoutParams.WRAP_CONTENT,
+                LayoutParams.MATCH_PARENT,
                 LayoutParams.WRAP_CONTENT,
                 15
         );
         buttonContainer.setLayoutParams(buttonParams);
+
+
 
         LinearLayout.LayoutParams sliderParams = new LinearLayout.LayoutParams(
                 LayoutParams.MATCH_PARENT,
@@ -48,14 +50,15 @@ class FoodsOrderCard extends LinearLayout {
         setPadding(8,8,8,16);
         foodName = new TextView(context);
         foodName.setTextSize(20);
-        foodName.setText(foodNameString);
+        foodName.setText(foodNameString+":  ");
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(
                 LayoutParams.MATCH_PARENT,
                 LayoutParams.WRAP_CONTENT,
                 1
         );
         //foodName.setLayoutParams(textParams);
-        addView(foodName);
+        //addView(foodName);
+        buttonContainer.addView(foodName);
 
 
 
@@ -77,7 +80,27 @@ class FoodsOrderCard extends LinearLayout {
         orderSlider.setLayoutParams(sliderParams);
         buttonContainer.addView(orderSlider);
 
-        addView(buttonContainer);
+
+        TextView descriptionView = new TextView(context);
+        descriptionView.setText(foodDescription);
+
+
+        LinearLayout mainContainerVert = new LinearLayout(context);
+        LinearLayout.LayoutParams verticalLayoutParams = new LinearLayout.LayoutParams(
+                LayoutParams.WRAP_CONTENT,
+                LayoutParams.WRAP_CONTENT,
+                5
+        );
+        mainContainerVert.setLayoutParams(verticalLayoutParams);
+        mainContainerVert.setOrientation(LinearLayout.VERTICAL);
+
+
+        mainContainerVert.addView(buttonContainer);
+        mainContainerVert.addView(descriptionView);
+
+        mainContainerVert.setPadding(0, 8, 0, 8);
+
+        addView(mainContainerVert);
 
         orderSlider.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -105,22 +128,6 @@ class FoodsOrderCard extends LinearLayout {
             }
         });
 
-        /*increase.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                quantity++;
-                quantityText.setText(Integer.toString(quantity));
-            }
-        });
-
-        decrease.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                quantity--;
-                if(quantity < 0) quantity = 0;
-                quantityText.setText(Integer.toString(quantity));
-            }
-        });*/
 
     }
 

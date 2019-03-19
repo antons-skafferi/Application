@@ -18,10 +18,10 @@ public class DrinksMenuFragment extends Fragment {
     }
 
 
-    public static DrinksMenuFragment newInstance(ArrayList<String> foodNames) {
+    public static DrinksMenuFragment newInstance(ArrayList<FoodItemData> foodData) {
         DrinksMenuFragment fragment = new DrinksMenuFragment();
         Bundle args = new Bundle();
-        args.putStringArrayList("itemNames", foodNames);
+        args.putParcelableArrayList("parcelObjs", foodData);
         fragment.setArguments(args);
         return fragment;
     }
@@ -43,9 +43,9 @@ public class DrinksMenuFragment extends Fragment {
         //LinearLayout fragLayout = new LinearLayout(v.getContext());
         //layoutMainMenu
         Bundle args = getArguments();
-        ArrayList<String> foodNames = args.getStringArrayList("itemNames");
+        ArrayList<FoodItemData> foodNames = args.getParcelableArrayList("parcelObjs");
         for(int i=0; i<foodNames.size(); i++){
-            FoodsOrderCard foodCard = new FoodsOrderCard(getActivity(), foodNames.get(i), false);
+            FoodsOrderCard foodCard = new FoodsOrderCard(getActivity(), foodNames.get(i).getFoodName(), foodNames.get(i).getFoodDescription(), false);
             orders.add(foodCard);
             mainLayout.addView(foodCard);
         }

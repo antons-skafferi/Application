@@ -10,6 +10,8 @@ import org.w3c.dom.Document;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class ShowFinishedOrders extends AppCompatActivity implements DocumentCallBack{
 
@@ -26,6 +28,14 @@ public class ShowFinishedOrders extends AppCompatActivity implements DocumentCal
         orderCardLayout = findViewById(R.id.finishedOrdersLayout);
 
         new DatabaseRequest(this).execute("http://10.0.2.2:8080/website/webresources/api.order1");
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                new DatabaseRequest(ShowFinishedOrders.this).execute("http://10.0.2.2:8080/website/webresources/api.order1");
+            }
+        }, 2000, 2000);
     }
 
 
@@ -42,6 +52,7 @@ public class ShowFinishedOrders extends AppCompatActivity implements DocumentCal
 
     @Override
     public void callBackDocument(JSONArray jsonArr) {
+        orderCardLayout.removeAllViews();
         createCard(orderExtracter.extractOrders(jsonArr, "2"));
     }
 
